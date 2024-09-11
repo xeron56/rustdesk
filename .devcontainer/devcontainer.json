@@ -1,0 +1,23 @@
+{
+    "name": "RustDesk",
+    "build": {
+      "dockerfile": "../Dockerfile",  // Pointing to your Dockerfile in the root directory
+      "context": ".."  // Use the root folder as context
+    },
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "ms-vscode.cpptools",          // C++ Extension
+      "rust-lang.rust",              // Rust Extension
+      "ms-vscode.cmake-tools",       // CMake Extension
+      "ms-azuretools.vscode-docker"  // Docker Extension
+    ],
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y cmake g++",  // If you want to install any additional dependencies
+    "remoteUser": "user",  // Make sure to use the user created in your Dockerfile
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "workspaceFolder": "/workspace"
+  }
+  
